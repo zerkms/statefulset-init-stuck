@@ -1,0 +1,8 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: statefulset-bug
+spec:
+  clusterIP: None
+  selector:
+    app: statefulset-bug

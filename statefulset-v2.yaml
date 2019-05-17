@@ -1,0 +1,29 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: statefulset-bug
+spec:
+  selector:
+    matchLabels:
+      app: statefulset-bug
+  serviceName: statefulset-bug
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: statefulset-bug
+    spec:
+      initContainers:
+        - name: init
+          image: busybox
+          command: ["sh", "-c"]
+          args:
+            - |
+              true
+      containers:
+        - name: c
+          image: busybox
+          command: ["sh", "-c"]
+          args:
+            - |
+              while true; do echo "hello world"; sleep 5; done
